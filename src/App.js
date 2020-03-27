@@ -1,26 +1,38 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import SleepStats from "./SleepStats";
+import Timer from "./Timer";
+import "./App.css";
 
-function App() {
+export default () => {
+  const [currentPage, setCurrentPage] = useState("home");
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+      <nav>
+        <button
+          onClick={() =>
+            setCurrentPage(currentPage === "home" ? "timer" : "home")
+          }
         >
-          Learn React
-        </a>
-      </header>
+          {currentPage === "home" ? "Sleep Session" : "Home"}
+        </button>
+        <button
+          onClick={() =>
+            setCurrentPage(
+              currentPage === "home" || currentPage === "timer"
+                ? "stats"
+                : "timer"
+            )
+          }
+        >
+          {currentPage === "home" || currentPage === "timer"
+            ? "Sleep Stats"
+            : "Sleep Session"}
+        </button>
+      </nav>
+      {currentPage === "home" && <h1>welcome!!</h1>}
+      {currentPage === "timer" && <Timer increment={1} />}
+      {currentPage === "stats" && <SleepStats />}
     </div>
   );
-}
-
-export default App;
+};
