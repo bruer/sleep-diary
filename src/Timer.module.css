@@ -1,0 +1,53 @@
+.top {
+  height: 25%;
+}
+.middle {
+  height: 50%;
+}
+.bottom {
+  height: 25%;
+  justify-content: flex-start;
+}
+.mainButton {
+  width: 15rem;
+  height: 15rem;
+  border: solid;
+  border-radius: 50%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.mainButton:hover {
+  cursor: pointer;
+  background-color: #ffc7c7;
+}
+.mainButton:hover .text {
+  font-style: italic;
+  /* text-shadow: 0.1rem 0.1rem black; */
+  /* color: green; */
+}
+.text {
+  font-size: 3rem;
+}
+.started {
+  align-self: flex-start;
+  margin: 2rem;
+  font-size: 1.5rem;
+}
+.on {
+  color: #00B300;
+}
+.off {
+  color: red;
+}
+.counter {
+  margin: 0;
+  font-size: 5rem;
+  position: fixed;
+}
+.buttonsContainer {
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+}

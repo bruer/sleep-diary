@@ -1,3 +1,20 @@
+.top {
+  height: 10%;
+}
+.middle {
+  height: 65%;
+}
+.bottom {
+  height: 25%;
+}
+
+.list {
+  overflow: scroll;
+  padding: 2rem 0px;
+  /* border: solid 1px; */
+  border-radius: 16px;
+  background-color: #ffc7c7;
+}
 .listItem {
-    margin: 10vw;
+  margin-bottom: 3rem;
 }
