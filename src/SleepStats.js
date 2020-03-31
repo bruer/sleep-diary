@@ -17,7 +17,7 @@ export default () => {
       <section className={styles.middle}>
         <ul className={styles.list}>
           {sleepDurations.map((session, i) => (
-            <li key={i} className={styles.listItem}>
+            <li key={i} id={i} className={styles.listItem}>
               <b>{session.date.toLocaleString()}</b>
               <p>you slept {session.duration} seconds</p>
             </li>

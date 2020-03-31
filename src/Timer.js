@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import styles from "./Timer.module.css";
+import { convertTimeToString, stopWatch } from "./api";
 
 export default class Timer extends Component {
   state = {
@@ -59,10 +60,14 @@ export default class Timer extends Component {
                 this.state.started ? styles.started : ""
               }`}
             >
-              {this.state.isOn ? "stop" : "start"}
+              {!this.state.started
+                ? "start"
+                : this.state.isOn
+                ? "pause"
+                : "continue"}
             </p>
             <p className={styles.counter}>
-              {this.state.started && this.state.time}
+              {this.state.started && stopWatch(this.state.time)}
             </p>
           </div>
         </section>
@@ -70,14 +75,13 @@ export default class Timer extends Component {
           {this.state.started && !this.state.isOn && (
             <div className={styles.buttonsContainer}>
               <button onClick={this.resetTimer}>reset</button>
-              <button onClick={this.storeTime}>save</button>
+              {this.state.time > 0 && (
+                <button onClick={this.storeTime}>save</button>
+              )}
             </div>
           )}
           {this.state.finalTime && (
-            <p>
-              you have slept for {this.state.finalTime} seconds.
-              congratulations!!
-            </p>
+            <p>you slept for {convertTimeToString(this.state.finalTime)}</p>
           )}
         </section>
       </>

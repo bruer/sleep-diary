@@ -10,7 +10,7 @@
 
 .list {
   overflow: scroll;
-  padding: 2rem 0px;
+  padding: 2rem;
   /* border: solid 1px; */
   border-radius: 16px;
   background-color: #ffc7c7;
