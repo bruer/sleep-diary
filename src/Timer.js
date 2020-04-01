@@ -33,15 +33,19 @@ export default class Timer extends Component {
   };
 
   storeTime = () => {
-    const sleepDurations = localStorage.getItem("sleepDurations")
-      ? JSON.parse(localStorage.getItem("sleepDurations"))
+    const sleepSessions = localStorage.getItem("sleepSessions")
+      ? JSON.parse(localStorage.getItem("sleepSessions"))
       : [];
 
     localStorage.setItem(
-      "sleepDurations",
+      "sleepSessions",
       JSON.stringify([
-        { date: new Date().toLocaleString(), duration: this.state.time },
-        ...sleepDurations
+        {
+          id: Math.random(),
+          date: new Date().toLocaleString(),
+          duration: this.state.time
+        },
+        ...sleepSessions
       ])
     );
     this.setState({ finalTime: this.state.time });
@@ -75,7 +79,7 @@ export default class Timer extends Component {
           {this.state.started && !this.state.isOn && (
             <div className={styles.buttonsContainer}>
               <button onClick={this.resetTimer}>reset</button>
-              {this.state.time > 0 && (
+              {this.state.time >= 0 && (
                 <button onClick={this.storeTime}>save</button>
               )}
             </div>

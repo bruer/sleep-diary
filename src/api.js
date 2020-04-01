@@ -3,7 +3,7 @@ const minute = second * 60;
 const hour = minute * 60;
 const day = hour * 24;
 const year = day * 365;
-console.log(hour, day, year);
+// console.log(hour, day, year);
 
 function convertToSeconds(time) {
   return convertRemainder(time, minute, second);

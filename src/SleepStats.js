@@ -1,13 +1,32 @@
 import React from "react";
 import styles from "./SleepStats.module.css";
+import { convertTimeToString } from "./api";
+import { useEffect } from "react";
+import { useState } from "react";
 
-export default () => {
-  const sleepDurations = JSON.parse(localStorage.getItem("sleepDurations"));
+const SleepStats = () => {
+  const [sessions, setSessions] = useState([]);
+  useEffect(() => {
+    updateState();
+  }, []);
+
+  const updateState = () => {
+    setSessions(JSON.parse(localStorage.getItem("sleepSessions")));
+  };
 
   const calculateTotalSleepTime = () => {
     let sum = 0;
-    sleepDurations.forEach(session => (sum += session.duration));
+    sessions.forEach(session => (sum += session.duration));
     return sum;
+  };
+
+  const removeSession = ({ target }) => {
+    const filteredSessions = sessions.filter(session => {
+      return session.id !== Number.parseFloat(target.parentNode.id);
+    });
+    // console.log(filteredSessions);
+    localStorage.setItem("sleepSessions", JSON.stringify(filteredSessions));
+    updateState();
   };
   return (
     <>
@@ -16,21 +35,27 @@ export default () => {
       </section>
       <section className={styles.middle}>
         <ul className={styles.list}>
-          {sleepDurations.map((session, i) => (
-            <li key={i} id={i} className={styles.listItem}>
+          {sessions.map((session, i) => (
+            <li key={i} id={session.id} className={styles.listItem}>
               <b>{session.date.toLocaleString()}</b>
-              <p>you slept {session.duration} seconds</p>
+              <p>you slept for {convertTimeToString(session.duration)}</p>
+              <button onClick={removeSession}>x</button>
             </li>
           ))}
         </ul>
       </section>
       <section className={styles.bottom}>
-        <p>your total sleep time is {calculateTotalSleepTime()} seconds</p>
+        <p>
+          your total sleep time is{" "}
+          {convertTimeToString(calculateTotalSleepTime())}
+        </p>
         <p>
           your average sleep time is{" "}
-          {calculateTotalSleepTime() / sleepDurations.length} seconds
+          {convertTimeToString(calculateTotalSleepTime() / sessions.length)}
         </p>
       </section>
     </>
   );
 };
+
+export default SleepStats;
