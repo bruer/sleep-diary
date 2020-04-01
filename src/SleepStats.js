@@ -7,11 +7,13 @@ import { useState } from "react";
 const SleepStats = () => {
   const [sessions, setSessions] = useState([]);
   useEffect(() => {
+    // console.log(sessions);
     updateState();
   }, []);
 
   const updateState = () => {
-    setSessions(JSON.parse(localStorage.getItem("sleepSessions")));
+    const localStorageItems = JSON.parse(localStorage.getItem("sleepSessions"));
+    setSessions(localStorageItems ? localStorageItems : []);
   };
 
   const calculateTotalSleepTime = () => {
