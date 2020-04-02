@@ -81,7 +81,7 @@ export default class Timer extends Component {
           {this.state.saved && (
             <div className={styles.resultsContainer}>
               <p>you slept for {convertTimeToString(this.state.time)}</p>
-              <Link to="sleep-stats">see stats?</Link>
+              <Link to="/sleep-stats">see stats?</Link>
               <p>or</p>
               <button onClick={this.resetTimer}>reset?</button>
             </div>

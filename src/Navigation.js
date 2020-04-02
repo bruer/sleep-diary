@@ -13,7 +13,7 @@ export default () => (
         <Link to="/sleep-session">Sleep Session</Link>
       </li>
       <li>
-        <Link to="sleep-stats">Sleep Stats</Link>
+        <Link to="/sleep-stats">Sleep Stats</Link>
       </li>
     </ul>
   </nav>

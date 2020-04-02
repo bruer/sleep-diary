@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter, Route } from "react-router-dom";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
 import "./App.css";
 import Navigation from "./Navigation";
 import Home from "./Home";
@@ -12,9 +12,11 @@ export default () => (
       <Navigation />
 
       <main>
-        <Route path="/" exact component={Home} />
-        <Route path="/sleep-session" component={SleepSession} />
-        <Route path="/sleep-stats" component={SleepStats} />
+        <Switch>
+          <Route path="/" exact component={Home} />
+          <Route path="/sleep-session" component={SleepSession} />
+          <Route path="/sleep-stats" component={SleepStats} />
+        </Switch>
       </main>
     </div>
   </BrowserRouter>
