@@ -1,8 +1,8 @@
 import React from "react";
 import Timer from "./Timer";
-import styles from "./Timer.module.css"
+import styles from "./Timer.module.css";
 
-export default () => (
+const SleepSession = () => (
   <>
     <section className={styles.top}>
       <h1>Sleep Session</h1>
@@ -10,3 +10,5 @@ export default () => (
     <Timer increment={1} />
   </>
 );
+
+export default SleepSession;

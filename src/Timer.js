@@ -1,13 +1,14 @@
 import React, { Component } from "react";
 import styles from "./Timer.module.css";
 import { convertTimeToString, stopWatch } from "./api";
+import { Link } from "react-router-dom";
 
 export default class Timer extends Component {
   state = {
     time: 0,
     started: false,
     isOn: false,
-    finalTime: false
+    saved: false
   };
 
   componentWillUnmount() {
@@ -20,16 +21,18 @@ export default class Timer extends Component {
         time: time + increment
       }));
     }, 1000);
-    this.setState({ started: true, isOn: true, finalTime: false });
+    this.setState({ started: true, isOn: true });
   };
 
   stopTimer = () => {
-    clearInterval(this.timeID);
-    this.setState({ isOn: false });
+    if (this.state.time > 0) {
+      clearInterval(this.timeID);
+      this.setState({ isOn: false });
+    }
   };
 
   resetTimer = () => {
-    this.setState({ time: 0, started: false });
+    this.setState({ time: 0, started: false, saved: false });
   };
 
   storeTime = () => {
@@ -48,44 +51,48 @@ export default class Timer extends Component {
         ...sleepSessions
       ])
     );
-    this.setState({ finalTime: this.state.time });
-    this.resetTimer();
+    this.setState({ saved: true });
   };
   render() {
     return (
       <>
         <section className={styles.middle}>
-          <div
-            onClick={this.state.isOn ? this.stopTimer : this.startTimer}
-            className={styles.mainButton}
-          >
-            <p
-              className={`${styles.text} ${
-                this.state.started ? styles.started : ""
-              }`}
+          {!this.state.saved && (
+            <div
+              onClick={this.state.isOn ? this.stopTimer : this.startTimer}
+              className={styles.mainButton}
             >
-              {!this.state.started
-                ? "start"
-                : this.state.isOn
-                ? "pause"
-                : "continue"}
-            </p>
-            <p className={styles.counter}>
-              {this.state.started && stopWatch(this.state.time)}
-            </p>
-          </div>
-        </section>
-        <section className={styles.bottom}>
-          {this.state.started && !this.state.isOn && (
-            <div className={styles.buttonsContainer}>
-              <button onClick={this.resetTimer}>reset</button>
-              {this.state.time >= 0 && (
-                <button onClick={this.storeTime}>save</button>
-              )}
+              <p
+                className={`${styles.text} ${
+                  this.state.started ? styles.started : ""
+                }`}
+              >
+                {!this.state.started
+                  ? "start"
+                  : this.state.isOn
+                  ? "pause"
+                  : "continue"}
+              </p>
+              <p className={styles.counter}>
+                {this.state.started && stopWatch(this.state.time)}
+              </p>
             </div>
           )}
-          {this.state.finalTime && (
-            <p>you slept for {convertTimeToString(this.state.finalTime)}</p>
+          {this.state.saved && (
+            <div className={styles.resultsContainer}>
+              <p>you slept for {convertTimeToString(this.state.time)}</p>
+              <Link to="sleep-stats">see stats?</Link>
+              <p>or</p>
+              <button onClick={this.resetTimer}>reset?</button>
+            </div>
+          )}
+        </section>
+        <section className={styles.bottom}>
+          {this.state.started && !this.state.isOn && !this.state.saved && (
+            <div className={styles.buttonsContainer}>
+              <button onClick={this.resetTimer}>reset</button>
+              <button onClick={this.storeTime}>save</button>
+            </div>
           )}
         </section>
       </>

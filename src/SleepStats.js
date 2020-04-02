@@ -47,14 +47,16 @@ const SleepStats = () => {
         </ul>
       </section>
       <section className={styles.bottom}>
-        <p>
-          your total sleep time is{" "}
-          {convertTimeToString(calculateTotalSleepTime())}
-        </p>
-        <p>
-          your average sleep time is{" "}
-          {convertTimeToString(calculateTotalSleepTime() / sessions.length)}
-        </p>
+        {sessions.length > 0 && <div>
+          <p>
+            your total sleep time is{" "}
+            {convertTimeToString(calculateTotalSleepTime())}
+          </p>
+          <p>
+            your average sleep time is{" "}
+            {convertTimeToString(calculateTotalSleepTime() / sessions.length)}
+          </p>
+        </div>}
       </section>
     </>
   );

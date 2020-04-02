@@ -6,9 +6,9 @@ export default () => (
   <nav>
     {/* <Link to="/">Home</Link> */}
     <ul className={styles.navList}>
-      <li>
+      {/* <li>
         <Link to="/">Home</Link>
-      </li>
+      </li> */}
       <li>
         <Link to="/sleep-session">Sleep Session</Link>
       </li>

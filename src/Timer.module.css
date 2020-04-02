@@ -13,6 +13,7 @@
   height: 15rem;
   border: solid;
   border-radius: 50%;
+  user-select: none;
 
   display: flex;
   align-items: center;
@@ -36,7 +37,7 @@
   font-size: 1.5rem;
 }
 .on {
-  color: #00B300;
+  color: #00b300;
 }
 .off {
   color: red;
@@ -47,7 +48,22 @@
   position: fixed;
 }
 .buttonsContainer {
-  width: 100%;
+  width: 50%;
   display: flex;
   justify-content: space-evenly;
+}
+.resultsContainer {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+}
+.resultsContainer a {
+  text-decoration: none;
+  color: unset;
+  font-size: 1.5rem;
+}
+.resultsContainer a:hover {
+  color: red;
 }
