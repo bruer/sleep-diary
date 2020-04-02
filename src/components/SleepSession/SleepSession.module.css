@@ -1,0 +1,10 @@
+.top {
+  height: 25%;
+}
+.middle {
+  height: 50%;
+}
+.bottom {
+  height: 25%;
+  justify-content: flex-start;
+}

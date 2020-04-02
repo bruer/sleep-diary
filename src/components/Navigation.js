@@ -4,13 +4,12 @@ import styles from "./Navigation.module.css";
 
 export default () => (
   <nav>
-    {/* <Link to="/">Home</Link> */}
     <ul className={styles.navList}>
       {/* <li>
         <Link to="/">Home</Link>
       </li> */}
       <li>
-        <Link to="/sleep-session">Sleep Session</Link>
+        <Link to="/">Sleep Session</Link>
       </li>
       <li>
         <Link to="/sleep-stats">Sleep Stats</Link>

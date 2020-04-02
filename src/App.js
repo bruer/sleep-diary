@@ -1,23 +1,35 @@
-import React from "react";
+import React, { useState, useCallback } from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
+import Navigation from "./components/Navigation";
+import SleepSession from "./components/SleepSession/SleepSession";
+import SleepStats from "./components/SleepStats/SleepStats";
+import { fetchSessions } from "./api/session";
 import "./App.css";
-import Navigation from "./Navigation";
-import Home from "./Home";
-import SleepSession from "./SleepSession";
-import SleepStats from "./SleepStats";
 
-export default () => (
-  <BrowserRouter>
-    <div className="App">
-      <Navigation />
+const App = () => {
+  const [sessions, setSessions] = useState([]);
+  const update = useCallback(() => setSessions(fetchSessions()), []);
+  return (
+    <BrowserRouter>
+      <div className="App">
+        <Navigation />
+        <main>
+          <Switch>
+            <Route path="/sleep-stats">
+              <SleepStats sessions={sessions} updateState={update} />
+            </Route>
+            <Route path="/">
+              <SleepSession
+                sessions={sessions}
+                updateState={update}
+                increment={1}
+              />
+            </Route>
+          </Switch>
+        </main>
+      </div>
+    </BrowserRouter>
+  );
+};
 
-      <main>
-        <Switch>
-          <Route path="/" exact component={Home} />
-          <Route path="/sleep-session" component={SleepSession} />
-          <Route path="/sleep-stats" component={SleepStats} />
-        </Switch>
-      </main>
-    </div>
-  </BrowserRouter>
-);
+export default App;
