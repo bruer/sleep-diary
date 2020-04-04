@@ -7,9 +7,11 @@ import {
   updateSessions
 } from "../../api/session";
 import styles from "./SleepSession.module.css";
+import { timer } from "../../api/convertTime";
 
 export default class SleepSession extends Component {
   state = {
+    start: 0,
     time: 0,
     started: false,
     isOn: false,
@@ -21,12 +23,22 @@ export default class SleepSession extends Component {
   componentWillUnmount() {
     this.stopTimer();
   }
+  updateTimer = start => {
+    this.setState({ time: timer(start) });
+  };
   startTimer = () => {
-    this.timeID = setInterval(() => {
-      this.setState(({ time }, { increment }) => ({
-        time: time + increment
-      }));
-    }, 1000);
+    // this.setState({ start: new Date().getTime() / 1000 });
+    this.timeID = setInterval(
+      this.updateTimer,
+      1000,
+      new Date().getTime() / 1000
+    );
+
+    // this.timeID = setInterval(() => {
+    //   this.setState(({ time }, { increment }) => ({
+    //     time: time + increment
+    //   }));
+    // }, 1000);
     this.setState({ started: true, isOn: true });
   };
   stopTimer = () => {
@@ -78,7 +90,7 @@ export default class SleepSession extends Component {
                   className={styles.saveButton}
                   onClick={this.saveSession}
                 >
-                  save
+                  save!
                 </button>
               )}
             </section>

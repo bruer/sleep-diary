@@ -3,7 +3,7 @@ const minute = second * 60;
 const hour = minute * 60;
 const day = hour * 24;
 const year = day * 365;
-console.log(hour, day, year);
+// console.log(hour, day, year);
 
 function convertToSeconds(time) {
   return convertRemainder(time, minute, second);
@@ -85,3 +85,16 @@ export function convertTimeToString(time) {
   }
   return `${addSuffix(time, "second")}`;
 }
+
+export function timer(startTime) {
+  const currentTime = new Date().getTime() / 1000;
+  const seconds = parseInt(currentTime - startTime);
+  console.log(startTime, currentTime)
+  
+  console.log(seconds);
+  return seconds;
+}
+
+const start = new Date().getTime() / 1000;
+
+// setInterval(timer, 1000, start);

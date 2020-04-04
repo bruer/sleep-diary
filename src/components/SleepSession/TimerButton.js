@@ -6,6 +6,7 @@ const TimerButton = ({ isOn, started, time, start, stop }) => {
   const handleClick = () => {
     isOn ? stop() : start();
   };
+  
   return (
     <div onClick={handleClick} className={styles.container}>
       <p className={`${styles.text} ${started ? styles.started : ""}`}>
