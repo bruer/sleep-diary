@@ -8,12 +8,21 @@ const SessionResult = ({ time, reset }) => {
     reset();
   };
   return (
-    <div className={styles.container}>
-      <p>you slept for {convertTimeToString(time)}</p>
-      <Link to="/sleep-stats">see stats?</Link>
-      <p>or</p>
-      <button onClick={handleClick}>reset?</button>
-    </div>
+    <>
+      <section className={styles.top}>
+        <p>you slept for</p>
+        <pre className={styles.time}>{convertTimeToString(time)}</pre>
+      </section>
+      <section className={styles.bottom}>
+        <Link className={styles.statsButton} to="/sleep-stats">
+          see stats
+        </Link>
+        <p>or</p>
+        <button className={styles.resetButton} onClick={handleClick}>
+          reset
+        </button>
+      </section>
+    </>
   );
 };
 

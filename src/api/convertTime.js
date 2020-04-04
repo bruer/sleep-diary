@@ -3,7 +3,7 @@ const minute = second * 60;
 const hour = minute * 60;
 const day = hour * 24;
 const year = day * 365;
-// console.log(hour, day, year);
+console.log(hour, day, year);
 
 function convertToSeconds(time) {
   return convertRemainder(time, minute, second);
@@ -56,7 +56,7 @@ export function convertTimeToString(time) {
     const days = convertToDays(time, true);
 
     return `${addSuffix(years, "year")}${
-      days ? ` and ${addSuffix(days, "day")}` : ""
+      days ? `\nand\n${addSuffix(days, "day")}` : ""
     }`;
   }
   if (time >= day) {
@@ -64,7 +64,7 @@ export function convertTimeToString(time) {
     const hours = convertToHours(time, true);
 
     return `${addSuffix(days, "day")}${
-      hours ? ` and ${addSuffix(hours, "hour")}` : ""
+      hours ? `\nand\n${addSuffix(hours, "hour")}` : ""
     }`;
   }
   if (time >= hour) {
@@ -72,7 +72,7 @@ export function convertTimeToString(time) {
     const minutes = convertToMinutes(time, true);
 
     return `${addSuffix(hours, "hour")}${
-      minutes ? ` and ${addSuffix(minutes, "minute")}` : ""
+      minutes ? `\nand\n${addSuffix(minutes, "minute")}` : ""
     }`;
   }
   if (time >= minute) {
@@ -80,8 +80,8 @@ export function convertTimeToString(time) {
     const seconds = convertToSeconds(time);
 
     return `${addSuffix(minutes, "minute")}${
-      seconds ? ` and ${addSuffix(seconds, "second")}` : ""
+      seconds ? `\nand\n${addSuffix(seconds, "second")}` : ""
     }`;
   }
-  return addSuffix(time, "second");
+  return `${addSuffix(time, "second")}`;
 }

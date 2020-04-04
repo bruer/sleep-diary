@@ -1,9 +1,14 @@
-.top {
-  height: 10%;
+.container {
+  max-height: 90%;
 }
-.middle {
-  height: 65%;
+.top {
+  height: 25%;
+  justify-content: flex-end;
 }
 .bottom {
-  height: 25%;
+  height: 75%;
+}
+.message {
+  font-size: 3rem;
+  letter-spacing: .5rem;
 }

@@ -6,5 +6,7 @@ export function totalSleepTime(sessions) {
 
 export function averageSleepTime(sessions) {
   const sum = totalSleepTime(sessions);
-  return sum / sessions.length;
+  const average = sum / sessions.length;
+  
+  return average.toFixed(1);
 }

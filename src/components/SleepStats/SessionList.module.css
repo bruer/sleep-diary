@@ -1,10 +1,11 @@
 .list {
-  overflow: scroll;
-  padding: 2rem;
+  max-height: 65%;
+  /* padding: 2rem; */
   /* border: solid 1px; */
-  border-radius: 16px;
+  border-radius: 1rem;
   background-color: #ffc7c7;
+  overflow: scroll;
 }
 .listItem {
-  margin-bottom: 3rem;
+  margin: 2rem;
 }

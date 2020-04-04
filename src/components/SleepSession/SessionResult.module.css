@@ -5,11 +5,28 @@
   align-items: center;
   justify-content: space-evenly;
 }
-.container a {
-  text-decoration: none;
-  color: unset;
+.top, .bottom {
+  height: 50%;
   font-size: 1.5rem;
 }
-.container a:hover {
+.time {
+  margin: 0;
+  font-size: 3rem;
+  word-spacing: 1rem;
+  font-weight: lighter;
+  font-family: unset;
+}
+.bottom{
+  /* justify-content: flex-start; */
+}
+.statsButton {
+  text-decoration: none;
+  color: unset;
+  font-size: 3rem;
+}
+.statsButton:hover {
   color: red;
+}
+.resetButton {
+  font-size: 2.5rem;
 }

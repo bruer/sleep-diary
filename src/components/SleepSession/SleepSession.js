@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import TimerButton from "./TimerButton";
 import SessionResult from "./SessionResult";
-import SessionButtons from "./SessionButtons";
 import {
   createSession,
   storeSessions,
@@ -50,28 +49,44 @@ export default class SleepSession extends Component {
   render() {
     return (
       <>
-        <section className={styles.top}>
-          <h1>Sleep Session</h1>
-        </section>
-        <section className={styles.middle}>
-          {!this.state.saved && (
-            <TimerButton
-              isOn={this.state.isOn}
-              started={this.state.started}
-              time={this.state.time}
-              start={this.startTimer}
-              stop={this.stopTimer}
-            />
-          )}
-          {this.state.saved && (
-            <SessionResult time={this.state.time} reset={this.resetTimer} />
-          )}
-        </section>
-        <section className={styles.bottom}>
-          {this.state.started && !this.state.isOn && !this.state.saved && (
-            <SessionButtons reset={this.resetTimer} save={this.saveSession} />
-          )}
-        </section>
+        {!this.state.saved && (
+          <>
+            <section className={styles.top}>
+              {this.state.started && !this.state.isOn && !this.state.saved && (
+                <button
+                  className={styles.resetButton}
+                  onClick={this.resetTimer}
+                >
+                  reset
+                </button>
+              )}
+            </section>
+            <section className={styles.middle}>
+              {!this.state.saved && (
+                <TimerButton
+                  isOn={this.state.isOn}
+                  started={this.state.started}
+                  time={this.state.time}
+                  start={this.startTimer}
+                  stop={this.stopTimer}
+                />
+              )}
+            </section>
+            <section className={styles.bottom}>
+              {this.state.started && !this.state.isOn && !this.state.saved && (
+                <button
+                  className={styles.saveButton}
+                  onClick={this.saveSession}
+                >
+                  save
+                </button>
+              )}
+            </section>
+          </>
+        )}
+        {this.state.saved && (
+          <SessionResult time={this.state.time} reset={this.resetTimer} />
+        )}
       </>
     );
   }

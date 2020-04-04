@@ -16,15 +16,17 @@ const SleepStats = ({ sessions, updateState }) => {
   };
   return (
     <>
-      <section className={styles.top}>
-        <h1>Sleep Stats</h1>
-      </section>
-      <section className={styles.middle}>
-        <SessionList sessions={sessions} remove={removeSession} />
-      </section>
-      <section className={styles.bottom}>
-        {sessions.length > 0 && <Stats sessions={sessions} />}
-      </section>
+      {sessions.length <= 0 && (
+        <p className={styles.message}>you need to sleep</p>
+      )}
+      {sessions.length > 0 && (
+        <>
+          <section className={styles.container}>
+            <Stats sessions={sessions} />
+            <SessionList sessions={sessions} remove={removeSession} />
+          </section>
+        </>
+      )}
     </>
   );
 };

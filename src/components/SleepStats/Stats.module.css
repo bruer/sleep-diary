@@ -1,0 +1,10 @@
+.stats {
+  font-size: 1.25rem;
+}
+.text {
+  margin: 0;
+}
+.time {
+  margin: 1rem 0 2rem;
+  font-weight: bold;
+}
