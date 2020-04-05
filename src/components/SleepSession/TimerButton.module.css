@@ -8,9 +8,10 @@
   user-select: none;
   touch-action: manipulation;
 
-  display: flex;
+  /* display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: center; */
 }
 .container:hover {
   background-color: #ffc7c7;
@@ -21,21 +22,38 @@
   /* color: green; */
 }
 .text {
-  font-size: 3rem;
-}
-.started {
-  align-self: flex-start;
-  margin: 2rem;
-  font-size: 1.5rem;
-}
-.on {
-  color: #00b300;
-}
-.off {
-  color: red;
+  margin: 0;
+  /* letter-spacing: .1rem;
+  margin-left: .1rem; */
 }
 .counter {
   margin: 0;
+}
+
+.top, .middle, .bottom {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.top, .bottom {
+  height: 30%;
+  font-size: 1.5rem;
+  /* letter-spacing: .15rem;
+  margin-left: .15rem; */
+}
+.middle {
+  height: 40%;
+  justify-content: center;
   font-size: 3rem;
-  position: fixed;
+  
+}
+.top {
+  justify-content: flex-end;
+}
+.bottom {
+  justify-content: flex-start;
+}
+.letterspacing {
+  letter-spacing: .1em;
+  margin-left: .1em;
 }

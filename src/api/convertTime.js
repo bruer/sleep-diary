@@ -86,15 +86,9 @@ export function convertTimeToString(time) {
   return `${addSuffix(time, "second")}`;
 }
 
-export function timer(startTime) {
+export function timeDifference(startTime) {
   const currentTime = new Date().getTime() / 1000;
   const seconds = parseInt(currentTime - startTime);
-  // console.log(startTime, currentTime)
-  
-  // console.log(seconds);
+
   return seconds;
 }
-
-const start = new Date().getTime() / 1000;
-
-// setInterval(timer, 1000, start);

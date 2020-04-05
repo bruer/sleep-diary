@@ -7,12 +7,12 @@ import {
   updateSessions
 } from "../../api/session";
 import styles from "./SleepSession.module.css";
-import { timer } from "../../api/convertTime";
+import { timeDifference } from "../../api/convertTime";
 
 export default class SleepSession extends Component {
   state = {
-    start: 0,
     time: 0,
+    pausedAt: 0,
     started: false,
     isOn: false,
     saved: false
@@ -23,41 +23,24 @@ export default class SleepSession extends Component {
   componentWillUnmount() {
     this.stopTimer();
   }
-  updateTimer = start => {
-    this.setState((state, props) => ({
-      time: state.start + props.increment(start)
+  updateTimer = startTime => {
+    this.setState(({ pausedAt }) => ({
+      time: pausedAt + timeDifference(startTime)
     }));
   };
   startTimer = () => {
-    // this.setState({ start: new Date().getTime() / 1000 });
-    // this.timeID = setInterval(
-    //   this.updateTimer,
-    //   1000,
-    //   new Date().getTime() / 1000 + this.state.time
-    //   // this.state.start
-    // );
-
-    this.timeID = setInterval(
-      this.updateTimer,
-      1000,
-      new Date().getTime() / 1000
-    );
-
-    // this.timeID = setInterval(() => {
-    //   this.setState(({ time }, { increment }) => ({
-    //     time: time + increment
-    //   }));
-    // }, 1000);
+    const currentTime = new Date().getTime() / 1000;
+    this.timer = setInterval(this.updateTimer, 1000, currentTime);
     this.setState({ started: true, isOn: true });
   };
   stopTimer = () => {
     if (this.state.time > 0) {
-      clearInterval(this.timeID);
-      this.setState({ isOn: false, start: this.state.time });
+      clearInterval(this.timer);
+      this.setState({ isOn: false, pausedAt: this.state.time });
     }
   };
   resetTimer = () => {
-    this.setState({ time: 0, started: false, saved: false });
+    this.setState({ time: 0, pausedAt: 0, started: false, saved: false });
   };
   saveSession = () => {
     const session = createSession(this.state.time);
@@ -75,7 +58,7 @@ export default class SleepSession extends Component {
             <section className={styles.top}>
               {this.state.started && !this.state.isOn && !this.state.saved && (
                 <button
-                  className={styles.resetButton}
+                  className={`${styles.resetButton} ${styles.letterspacing}`}
                   onClick={this.resetTimer}
                 >
                   reset
@@ -85,8 +68,8 @@ export default class SleepSession extends Component {
             <section className={styles.middle}>
               {!this.state.saved && (
                 <TimerButton
-                  isOn={this.state.isOn}
                   started={this.state.started}
+                  isOn={this.state.isOn}
                   time={this.state.time}
                   start={this.startTimer}
                   stop={this.stopTimer}
@@ -96,7 +79,7 @@ export default class SleepSession extends Component {
             <section className={styles.bottom}>
               {this.state.started && !this.state.isOn && !this.state.saved && (
                 <button
-                  className={styles.saveButton}
+                  className={`${styles.saveButton} ${styles.letterspacing}`}
                   onClick={this.saveSession}
                 >
                   save
