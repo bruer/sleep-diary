@@ -24,10 +24,19 @@ export default class SleepSession extends Component {
     this.stopTimer();
   }
   updateTimer = start => {
-    this.setState({ time: timer(start) });
+    this.setState((state, props) => ({
+      time: state.start + props.increment(start)
+    }));
   };
   startTimer = () => {
     // this.setState({ start: new Date().getTime() / 1000 });
+    // this.timeID = setInterval(
+    //   this.updateTimer,
+    //   1000,
+    //   new Date().getTime() / 1000 + this.state.time
+    //   // this.state.start
+    // );
+
     this.timeID = setInterval(
       this.updateTimer,
       1000,
@@ -44,7 +53,7 @@ export default class SleepSession extends Component {
   stopTimer = () => {
     if (this.state.time > 0) {
       clearInterval(this.timeID);
-      this.setState({ isOn: false });
+      this.setState({ isOn: false, start: this.state.time });
     }
   };
   resetTimer = () => {
@@ -90,7 +99,7 @@ export default class SleepSession extends Component {
                   className={styles.saveButton}
                   onClick={this.saveSession}
                 >
-                  save!
+                  save
                 </button>
               )}
             </section>

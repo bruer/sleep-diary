@@ -5,6 +5,7 @@ import SleepSession from "./components/SleepSession/SleepSession";
 import SleepStats from "./components/SleepStats/SleepStats";
 import { fetchSessions } from "./api/session";
 import "./App.css";
+import { timer } from "./api/convertTime";
 
 const App = () => {
   const [sessions, setSessions] = useState([]);
@@ -22,7 +23,7 @@ const App = () => {
               <SleepSession
                 sessions={sessions}
                 updateState={update}
-                increment={1}
+                increment={timer}
               />
             </Route>
           </Switch>

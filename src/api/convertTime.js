@@ -89,9 +89,9 @@ export function convertTimeToString(time) {
 export function timer(startTime) {
   const currentTime = new Date().getTime() / 1000;
   const seconds = parseInt(currentTime - startTime);
-  console.log(startTime, currentTime)
+  // console.log(startTime, currentTime)
   
-  console.log(seconds);
+  // console.log(seconds);
   return seconds;
 }
 
