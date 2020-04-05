@@ -1,35 +1,21 @@
 .container {
   width: 15rem;
   height: 15rem;
-  border: solid;
+  border: double 1.5rem;
   border-radius: 50%;
   
   cursor: pointer;
   user-select: none;
   touch-action: manipulation;
 
-  /* display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center; */
+  transition: background-color 2s ease-in-out;
 }
 .container:hover {
-  background-color: #ffc7c7;
+  /* background-color: #ffc7c7; */
 }
 .container:hover .text {
   font-style: italic;
-  /* text-shadow: 0.1rem 0.1rem black; */
-  /* color: green; */
 }
-.text {
-  margin: 0;
-  /* letter-spacing: .1rem;
-  margin-left: .1rem; */
-}
-.counter {
-  margin: 0;
-}
-
 .top, .middle, .bottom {
   display: flex;
   flex-direction: column;
@@ -38,14 +24,11 @@
 .top, .bottom {
   height: 30%;
   font-size: 1.5rem;
-  /* letter-spacing: .15rem;
-  margin-left: .15rem; */
 }
 .middle {
   height: 40%;
   justify-content: center;
   font-size: 3rem;
-  
 }
 .top {
   justify-content: flex-end;
