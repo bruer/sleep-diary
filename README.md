@@ -1,4 +1,4 @@
-# Sleep Diary
+# :zzz: Sleep Diary :clock1:
 
 The project which I based my thesis on during the last semester of my Frontend education.
 
