@@ -1,4 +1,4 @@
-# :sleeping: Sleep Diary :notebook_with_decorative_cover:
+# Sleep Diary :sleeping:  :notebook_with_decorative_cover:
 
 The project which I based my thesis on during the last semester of my Frontend education.
 
