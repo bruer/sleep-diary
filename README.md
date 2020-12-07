@@ -2,7 +2,7 @@
 
 The project which I based my thesis on during the last semester of my Frontend education.
 
-So it's basically a timer which I can use to track the amount of time I've slept each night. Each session (representing a night's sleep) is stored in the browser's local storage. That way I've them at hand when I need to iterate over them - like when I list information about the sessions and calculate the total sum of the sleep time, as a way to help me survey my sleep habits.
+So it's basically a timer which I can use to track the amount of time I've slept each night. Each session (representing a night's sleep) is stored in the browser's local storage. That way I have them at hand when I need to iterate over them - like when I list information about the sessions and calculate the total sum of the sleep time, as a way to help me survey my sleep habits.
 
 Made with help of the **React** framework.
 
